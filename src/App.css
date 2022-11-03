@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.create-player-button {
+  margin-left: 1rem;
+  width: 110%;
+  display: inline-flex;
+}
+
+.start-end-button {
+  margin-right: 1rem;
+}
+
+.distance-button {
+  margin-right: 0.5rem;
+}
+
+.app-container {
+  background-color: #252526;
+}
+
+.h1 {
+  color: white;
+}
