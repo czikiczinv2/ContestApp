@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Form, InputGroup, Modal} from 'react-bootstrap';
 import axios from "axios";
 
@@ -13,17 +13,28 @@ export default function PopUpButtonPlayer(props) {
     const[playerLastName, setPlayerLastName] = useState("")
     const[playerGroup, setPlayerGroup] = useState("A")
     const[playerDistanceIds, setPlayerDistanceIds] = useState([])
-    const[playerStartingNumber, setPlayerStartingNumber] = useState(1)
 
     const[isInvalid, setIsInvalid] = useState(false)
 
+    const getPlayers = () => {
+        axios
+            .get("https://localhost:7051/api/Player")
+            .catch(error => console.log(error))
+    }
+
     let playerNumber = 1
 
-    function incrementPlayerStartNumber() {
-        setPlayerStartingNumber(prevState => prevState + 1)
+    useEffect(() => {
+        getPlayers()
+        const interval = setInterval(() => getPlayers() , 3000)
+        return () => {
+            clearInterval(interval)
+        };
 
-        return playerStartingNumber
-    }
+    }, [])
+
+    const incrementPlayerStartNumber = () => props.playersInTournament.length + 1
+
 
     function postPlayer(event) {
         event.preventDefault()

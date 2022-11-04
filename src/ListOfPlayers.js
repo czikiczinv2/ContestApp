@@ -211,7 +211,7 @@ export default function ListOfPlayers(props) {
                             onChange={(e) => setPlayerSearchValue(e.target.value)}
                         />
 
-                    </InputGroup> : <PopUpButtonPlayer tournament={state} getRequest={getPlayers}/>}
+                    </InputGroup> : <PopUpButtonPlayer tournament={state} getRequest={getPlayers} state={state} playersInTournament={playersInTournament}/>}
 
 
 
